@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaStone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="AlphaStone is a vanilla server for playing on the old version of Minecraft PE Alpha 0.8.1">
+    <meta property="og:title" content="AlphaStone | Minecraft PE Alpha 0.8.1 server">
+    <meta property="og:description" content="AlphaStone is a vanilla server for playing on the old version of Minecraft PE Alpha 0.8.1">
+</head>
+<body>
+    <div class="container">
+
+        <div class="logo">
+            <img src="favicon.ico" alt="Image" class="image-before-title">
+            <h1 id="title">Alpha<span class="highlight">Stone</span></h1>
+        </div>
+
+        <p style="font-size: 18px;" translate="description">AlphaStone is a vanilla server for playing on the old version of Minecraft PE Alpha 0.8.1</p><br>
+
+        <!--
+        <a href="news.html" class="button" translate="news-button" style="width: 423px; margin-bottom: 12px;">News</a><br>
+        --->
+        <a href="history.html" class="button" translate="history-button" style="width: 423px; margin-bottom: 12px;">History</a><br>
+        <a href="faq/whitelist.html" class="button" translate="whitelist-button" style="width: 423px;">Whitelist me</a><br>
+
+        <div class="server" id="alphastone-095">
+            <div class="server-name">AlphaStone (0.9.5)</div>
+            <div class="server-status">Loading...</div>
+        </div>
+        <div class="server" id="alphastone-081">
+            <div class="server-name">AlphaStone (0.8.1)</div>
+            <div class="server-status">Loading...</div>
+        </div><br>
+        <div class="server" id="alphastone-076">
+            <div class="server-name">AlphaStone (0.7.6)</div>
+            <div class="server-status">Loading...</div>
+        </div>
+    </div>
+
+    <div class="language-selector">
+        <select id="language-select" class="language-select-style" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+            <option value="uk">Українська</option>
+            <option value="pt">Português</option>
+        </select>
+    </div>
+
+    <script src="serverstatus.js"></script>
+
+    <script>
+        const translations = {
+            "ru": {
+                "description": "AlphaStone - это ванильный сервер для игры в старой версии Minecraft PE Alpha 0.8.1",
+                "news-button": "Новости",
+                "history-button": "История",
+                "whitelist-button": "Подтвердить меня"
+            },
+            "en": {
+                "description": "AlphaStone is a vanilla server for playing on the old version of Minecraft PE Alpha 0.8.1",
+                "news-button": "News",
+                "history-button": "History",
+                "whitelist-button": "Whitelist me"
+            },
+            "uk": {
+                "description": "AlphaStone - це ванiльний сервер для гри в старiй версiї Minecraft PE Alpha 0.8.1",
+                "news-button": "Новини",
+                "history-button": "Iсторiя",
+                "whitelist-button": "Пiдтвердити мене"
+            },
+            "pt": {
+                "description": "AlphaStone é um servidor vanilla para jogar na antiga versão do Minecraft PE Alpha 0.8.1",
+                "news-button": "Notícias",
+                "history-button": "História",
+                "whitelist-button": "Verifique-me"
+            }
+        };
+
+        function changeLanguage() {
+            const selectedLanguage = document.getElementById("language-select").value;
+
+            localStorage.setItem("selectedLanguage", selectedLanguage);
+
+            const elementsToTranslate = document.querySelectorAll("[translate]");
+
+            elementsToTranslate.forEach(element => {
+                const translationKey = element.getAttribute("translate");
+                if (translations[selectedLanguage] && translations[selectedLanguage][translationKey]) {
+                    element.textContent = translations[selectedLanguage][translationKey];
+                }
+            });
+        }
+
+        window.onload = function () {
+            const storedLanguage = localStorage.getItem("selectedLanguage");
+            if (storedLanguage) {
+                document.getElementById("language-select").value = storedLanguage;
+            }
+            changeLanguage();
+        };
+    </script>
+
+</body>
+</html>
